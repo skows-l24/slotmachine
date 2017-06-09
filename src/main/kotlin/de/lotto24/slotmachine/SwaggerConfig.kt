@@ -30,8 +30,8 @@ class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                // only /api/* methods should be exposed by Swagger
-                .paths(PathSelectors.ant("/api/*"))
+                // only /api/** methods should be exposed by Swagger
+                .paths(PathSelectors.ant("/api/**"))
                 .build()
                 .useDefaultResponseMessages(false)
     }
