@@ -1,2 +1,2 @@
-# hack_slot-machine
+# slot-machine
 Slot Machine - Playground for new technologies
