@@ -21,7 +21,7 @@ class SlotMachineController {
 
     @GetMapping("/options/{optionName}")
     @ApiOperation(value = "Get a list of saved options by optionName")
-    fun <T> getOptionByName(@PathVariable optionName: String): Option = storage.get(optionName)
+    fun getOptionByName(@PathVariable optionName: String): Option = storage.get(optionName)
 
     @GetMapping("/options")
     @ApiOperation(value = "Get a list of all saved options", notes = "Returns all saved options")
