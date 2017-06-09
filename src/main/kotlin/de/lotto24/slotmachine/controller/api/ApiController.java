@@ -1,5 +1,6 @@
 package de.lotto24.slotmachine.controller.api;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @RestController
-@RequestMapping(path = "api")
+@RequestMapping(path = "api", produces = {MediaType.APPLICATION_JSON_VALUE})
 public @interface ApiController {
 }

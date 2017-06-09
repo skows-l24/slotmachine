@@ -4,7 +4,6 @@ import de.lotto24.slotmachine.controller.Storage
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 
 /**
@@ -17,25 +16,25 @@ class SlotMachineController {
     @Autowired
     lateinit var storage : Storage
 
-    @PostMapping("/pick", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @PostMapping("/pick")
     fun <T> pick(@RequestBody pickData: PickData<T>) = pickData.options.pickRandom(pickData.quantity)
 
-    @GetMapping("/options/{optionName}", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @GetMapping("/options/{optionName}")
     @ApiOperation(value = "Get a list of saved options by optionName")
     fun <T> getOptionByName(@PathVariable optionName: String): Option = storage.get(optionName)
 
-    @GetMapping("/options", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @GetMapping("/options")
     @ApiOperation(value = "Get a list of all saved options", notes = "Returns all saved options")
     fun getOptions(): Collection<Option> = storage.all
 
-    @PostMapping("/options", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @PostMapping("/options")
     @ApiOperation(value = "Saves options", notes = "Saves options")
     fun get(@RequestBody option: Option): Option {
         storage.put(option)
         return option
     }
 
-    @DeleteMapping("/options/{optionName}", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @DeleteMapping("/options/{optionName}")
     @ApiOperation(value = "Deletes saved options")
     fun delete(@PathVariable optionName: String): Option = storage.remove(optionName)
 
