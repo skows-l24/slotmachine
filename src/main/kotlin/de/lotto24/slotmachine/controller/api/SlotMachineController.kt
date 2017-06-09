@@ -1,18 +1,15 @@
-package de.lotto24.slotmachine
+package de.lotto24.slotmachine.controller.api
 
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
 
 /**
  * @author skows (initial creation).
  */
-@RestController
-@RequestMapping("api/slot-machine")
+@ApiController
 class SlotMachineController {
 
-    @PostMapping("pick")
+    @PostMapping("/pick")
     fun <T> pick(@RequestBody pickData: PickData<T>) = pickData.options.pickRandom(pickData.quantity)
 
 }
