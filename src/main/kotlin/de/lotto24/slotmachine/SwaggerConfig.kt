@@ -10,10 +10,8 @@ import springfox.documentation.spi.DocumentationType
 import springfox.documentation.spring.web.plugins.Docket
 import springfox.documentation.swagger2.annotations.EnableSwagger2
 
-
-
 /**
- * Enables Swagger support. Start application and call http://localhost:8080/swagger-ui.html
+ * Enables Swagger support. Start application and call http://localhost:8080/
  */
 @Configuration
 @EnableSwagger2
@@ -24,8 +22,10 @@ class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
+                // only /api/* methods should be exposed by Swagger
+                .paths(PathSelectors.ant("/api/*"))
                 .build()
+                .useDefaultResponseMessages(false)
     }
 
     private fun apiInfo(): ApiInfo {
