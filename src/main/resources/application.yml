@@ -2,4 +2,8 @@ server:
   port: 8080
 spring:
   application:
-    name: "slot-machine"
+    name: slot-machine
+application:
+  swagger:
+    title: Slot Machine
+    description: Here you see the awesome Slot Machine with all its open interfaces
