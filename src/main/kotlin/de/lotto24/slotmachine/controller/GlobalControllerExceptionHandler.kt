@@ -1,16 +1,13 @@
 package de.lotto24.slotmachine.controller
 
-import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.ControllerAdvice
-import org.springframework.web.bind.annotation.ExceptionHandler
-import org.springframework.web.bind.annotation.ResponseStatus
-import java.util.*
 
-@ControllerAdvice
+// Not active, solution based on annotations directly at OptionNotFoundException!
+// @ControllerAdvice
 internal class GlobalControllerExceptionHandler {
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(NoSuchElementException::class)
-    fun handleNoTFound(e: Exception) {
+    // @ResponseStatus(HttpStatus.NOT_FOUND)
+    // @ExceptionHandler(NoSuchElementException::class)
+    fun handleNotFound(e: Exception) {
+        println (e)
         // Nothing to do
     }
 }

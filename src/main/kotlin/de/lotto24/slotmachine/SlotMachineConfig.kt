@@ -1,10 +1,12 @@
-package de.lotto24.slotmachine.controller
+package de.lotto24.slotmachine
 
+import de.lotto24.slotmachine.controller.Storage
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
 class SlotMachineConfig {
+
     @Bean
-    fun get(): Storage = Storage()
+    fun storage(): Storage = Storage()
 }
