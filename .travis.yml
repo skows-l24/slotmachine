@@ -4,8 +4,6 @@ services:
 - docker
 install:
 - ./mvnw clean install dockerfile:build
-script:
-- "echo \"./mvnw clean verify\""
 deploy:
   provider: elasticbeanstalk
   access_key_id:
