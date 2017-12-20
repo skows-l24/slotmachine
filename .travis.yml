@@ -11,8 +11,8 @@ after_success:
 - pip install --user awscli
 - export PATH=$PATH:$HOME/.local/bin
 - eval $(aws ecr get-login --region us-east-1)
-- docker tag hackslot/slot-machine:latest 758649603159.dkr.ecr.us-east-2.amazonaws.com/slotmachine
-- docker push 758649603159.dkr.ecr.us-east-2.amazonaws.com/slotmachine:latest
+- docker tag hackslot/slot-machine:greatest 758649603159.dkr.ecr.us-east-2.amazonaws.com/slotmachine
+- docker push 758649603159.dkr.ecr.us-east-2.amazonaws.com/slotmachine:greatest
 env:
   global:
   - secure: D2JGy2A1cCYbQmh5lIlKJby3N0kXKzhi9PBEkKs9ji0fMqV4qwtzOd9EOJVohMzrV7aY2TnrRiyecOwjKzbromqIVzcTvCunckXXHtIzt5fh4Iy/betD2kDdBLrxnb74Tx0PwlIpgqlJ8B8xcGIOqTDQ84ywDqC/LxKPO5XbMJXSyHw1eEjGdXj8ZDQ0+NZwMgAS5ap+Tq67PcCARAbkupmM1EvrEa2cNP7wGDji/oaREHkdipNF5soHWGPMkHSOmo8KR1DV8oPD3oUD+lHd8qbObma2e8i05cq7vcHQrqj7Mz0/iK5K5hbYpDu39MWHnO1HDd0EXlR/FHBh9JyFYImBfo8ECEWqdoeUSQVbrxUPfjuKBeTGBs4YPf4KK+nk/rleNXRrQlJ6tVGB7d7TJ4DjBmjvUW9zguUjlVsu/QXrz4592my7GtRr4ZTPUAdZLM+JlVOLic6GxIn8WGa0rHw6MFCYnth7cKUACerJ4mfndqWGyUOYtC7OAdf9tY42LezW2/GFkwyNe31592XGyYYe6HFJiVf9hR6RJnsTRBQOdzl1iA4yWT5LToCcex84td4Jack97BIxKxOpElK5ejC//HVzVHPkEp8Gbd9yQvM1KhmhAvQscm8kaeW9u9DQ+WIDRrKhyoQhDpByNK8Zc516BjO6YBYrNxp/tjvl0sg=
