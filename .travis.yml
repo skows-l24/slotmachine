@@ -5,14 +5,10 @@ services:
 install:
 - "./mvnw clean install dockerfile:build"
 script:
-- "./mvnw clean verify"
-after_success:
-- docker --version
-- pip install --user awscli
-- export PATH=$PATH:$HOME/.local/bin
-- eval $(aws ecr get-login --region us-east-1)
-- docker tag hackslot/slot-machine:greatest 758649603159.dkr.ecr.us-east-2.amazonaws.com/slotmachine
-- docker push 758649603159.dkr.ecr.us-east-2.amazonaws.com/slotmachine:greatest
+- echo "./mvnw clean verify"
+deploy:
+  provider: script
+  script: scripts/deploy.sh
 env:
   global:
   - secure: yy/kFBeMoSKl0GFhCarIC5Rp6s8NTXWbEH9RfGPxR5KLzb1VZybGER0CfX/RNxxgYzASCxaERSFef00Y3M/ulNoqnQAQWZPjyGQvhGLScs+Bx7onF3FXdT+pCbx0Wl8yoMglZwbEaoMEwO7jThLVd7Hvc6NB2xJI8L2Q0h6YWfItPoVx3zNgiXB2bWFIFx6krcQi08wS0OCI5nNPo4nwJSLbIc0bsw+v24+1DfHpUZE9686E43VC8UGuI4hbU2zoAOU9xpFHTDD7MeME9Ev//JyQUHsOSINswJsPIxhN5nLv/ymMdSbOIaMypa5Nebg+hAlrtjY+oKw+DMvc11MKUwvgbt2d1DT2TMUIm8ZU00QuRCK4390Tic1UxTdUs93WdqXTUFTTANRqiwEMcAt4PLuCKYgK7FVNjUgtFl6bMKpJW9cS03tK9/viLaHq9aYsrjURnoPwAWklpOmMGda9fprplEdHAlS0sOJYAa/uH9Dex7bEyDvGFjl109rhaAMBD9pygQQXpaDaroEYJL95FXQH1LV/5gcgBM7qaEontfRhsegQrczqRyRveawgEWBUUikRQ0lL6Mui82tGn/keXYCxPVaHwolkc20+FbQJ1142Vih2IorY1c/s4/f5sg/BrtQnaGii5Yyqo/cR/VUWABofBSsUTFWpkTsLoaZnDw4=
