@@ -3,6 +3,11 @@ server:
 spring:
   application:
     name: slot-machine
+  jackson:
+    serialization:
+      indent_output: true
+      write_dates_as_timestamps: false
+      write_durations_as_timestamps: false
 application:
   swagger:
     title: Slot Machine
