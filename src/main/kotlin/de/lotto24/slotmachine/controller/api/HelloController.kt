@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping
 @Api(description = "Controller that returns Hello world")
 class HelloController {
 
-    @GetMapping(value = "/hello")
-    @ApiOperation(value = "Return Hello world", notes = "Does nothing more than returning Hello World", response = String::class)
+    @GetMapping(value = "/helloworld")
+    @ApiOperation(value = "Return SASCHAAAAA! Hello world", notes = "Does nothing more than returning Hello World", response = String::class)
     @ApiResponse(code = 200, message = "Says hello world")
     private fun hello(): String {
         return "Hello world"
