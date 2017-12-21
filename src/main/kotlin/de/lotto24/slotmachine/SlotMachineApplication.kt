@@ -4,6 +4,8 @@ import org.reactivestreams.Publisher
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.builder.SpringApplicationBuilder
+import org.springframework.cloud.gateway.handler.predicate.RoutePredicates
+import org.springframework.cloud.gateway.route.gateway
 import org.springframework.context.support.beans
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -21,7 +23,6 @@ import java.net.URI
 class SlotMachineApplication
 
 fun main(args: Array<String>) {
-    // SpringApplication.run(SlotMachineApplication::class.java, *args)
 
     SpringApplicationBuilder()
             .sources(SlotMachineApplication::class.java)
@@ -55,9 +56,18 @@ fun main(args: Array<String>) {
                             GET("/name/{$searchPathName}") { ServerResponse.ok().body(optionRepository.findByName(it.pathVariable(searchPathName))) }
                             POST("/") { ServerResponse.ok().body(optionRepository.insert(it.bodyToMono(Option::class.java))) }
                         }
-                        GET("/hello") { ServerResponse.ok().body(listOf("Hello World!").toMono()) }
+                        GET("/hello") { ServerResponse.ok().body(listOf("Hello World!", "Visit .../option").toFlux()) }
                         GET("/goodbye") { ServerResponse.ok().body(listOf("Bye bye World!").toMono()) }
                         GET("/") { ServerResponse.temporaryRedirect(URI.create("hello")).build().toMono() }
+                    }
+                }
+                bean {
+                    gateway {
+                        route {
+                            id("lotto")
+                            predicate(RoutePredicates.path("/lotto") or RoutePredicates.path("/lotto24"))
+                            uri("https://lotto24.de")
+                        }
                     }
                 }
             })
