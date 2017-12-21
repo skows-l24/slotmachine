@@ -6,13 +6,13 @@ import io.swagger.annotations.ApiResponse
 import org.springframework.web.bind.annotation.GetMapping
 
 @ApiController
-@Api(description = "Controller that returns Hello Sascha")
+@Api(description = "Controller that returns Hello Hello")
 class HelloController {
 
     @GetMapping(value = "/hello-hohoho")
     @ApiOperation(value = "Return hohoho ... ! Hello world", notes = "Does nothing more than returning Hello World", response = String::class)
     @ApiResponse(code = 200, message = "Says hello world")
     private fun hello(): String {
-        return "Hello hohoho!!!"
+        return "Hello heloo!!!"
     }
 }
