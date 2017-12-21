@@ -4,8 +4,6 @@ services:
 - docker
 install:
 - "./mvnw clean install dockerfile:build -DskipTests"
-script:
-- "echo 'no tests'"
 after_success:
 - docker --version
 - pip install --user awscli
