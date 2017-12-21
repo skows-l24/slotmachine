@@ -20,7 +20,7 @@ class Storage() {
     operator fun get(optionName: String): Option = storage[optionName.toLowerCase()] ?: throw OptionNotFoundException(optionName)
 
     init {
-        put(Option("teamb", listOf("svoge", "skows")))
+        put(Option("teamb", listOf("svoge", "skows", "aheid")))
         put(Option("numbers", listOf("1", "2")))
     }
 
