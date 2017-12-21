@@ -6,12 +6,15 @@ install:
 - "./mvnw clean install dockerfile:build -DskipTests"
 script:
 - "echo 'no tests'"
-deploy:
-  skip_cleanup: true
-  provider: heroku
-  api_key:
-    secure: ufxD+HjBdg41KconiZXzYJRH/J5BHBMUphE9oTDzbFFhcOX3Lma1N9rIRyQo9mK2uWPbPwVOqRsyi3//n1iCTDY2kPr10X2BYpDdT06pLPqjjr/a+2AM3u7vHUIH/s9wdR3tS2Hss+jX/bmI93i6MrwrvyGNHOkdNViun9dtp3ILV/pseMFj5Akps7VGXdmNAYA/408QDuk/vm9LF+c7xXhaJhyqM2k6HnqaTAiuPsOamjEwnOVclq8S2XcXLrjCLAqdL/SFlK3rMgjCo8mF2TmZWVk+iAFjl5IA2ChlHkdHI2xhj1oYV7mSesOGyWpkozy+7ZeADUagoy9N4/96ZmHFUWhfRxulGjXTradAsxhBP7Ih4S543qi9exY703GA0E7IH+fH2pEH6sT5s0XMur5HxSLcfAQBYSIyvw8fjJa0gL1tvK2vIiYMsyPyjFX1UPVtIsldqlHuLyV1bQW0ZERfIBz84FGchzgZaGXshYdTgVsy8C2F4RBgmSp23zxPNuOtQ4phZlp+H8VDdfpcJjkdwLn9aW5TLzaHZuNboU5ZMEBpI+uFVGuN4z7JoNlWAc7UKgp6v0E6oRq+xQizkFbCkAhi+sOVXqn5DmkqIlb0kJRguBAhVF89lEKRuKxme5y85ECvquCtmNm7W1LKx89Y86h2yfXRVKEQ2bv0Q2g=
-  app: hackslot-slotmachine
-  on:
-    repo: skows-l24/slotmachine
-    branch: docker-aws-testing
+after_success:
+- docker --version
+- pip install --user awscli
+- export PATH=$PATH:$HOME/.local/bin
+- eval $(aws ecr get-login --no-include-email --region us-east-2)
+- docker tag hackslot/slot-machine:fastest 758649603159.dkr.ecr.us-east-2.amazonaws.com/slotmachine
+- docker push 758649603159.dkr.ecr.us-east-2.amazonaws.com/slotmachine
+env:
+  global:
+  - secure: v7Lu57FQAVoEOtNOKaoHNOCT901QB0uQ2Vn25Uy6ogVHD3XOspI95bcHo2Pk80bFallX++D2awpXkd5RhErh5oLZEG3312kKfE///+CBvw7toWEs80/Sl8DxB/jsMormJ+ayh+0s2+t8N6NinzKXK7aIglbu/WVPFZqVrsa614Wf61IMM5lg28Ybi1XCsRzLuvTMNwnrnkt8JdE0s21ZYl3G0kAf0GgwK/oJay+jh5rr/MC3aI4wFEfW63dNUh3HvxVGbBYpD2tA+SkVB4gx+ybWRraIK4KQlWSvKLz6uVxpkJFJ+aAAQc3kI25hIhIvE+y0vWt2Y7UYrkb8VXY0zoA7oFgADQATY5CdbO8el7Th+nXbjNXTQWsJn0BxX8qaxuXwRa8dWqWRd6V4CLNu+D2fKJvQmgKNQRs83Ckt9p5wmzctBkM7dlRwoXqHHhgm9iRpgjTaxQvRIM8K4HERswTfnZC+pCSh4IEAHBFfJuRQoEwKFBf9FsfzlFF6SUlq3c2vApaOd8IMLDwnSpLGrQs+nyhNei6c7p90EXHJ7HpEWuBiT+AY6tS1i+6Gecn5fVN7jUGW86tfMlCoBjamOJIkzaWfZM6DFSbvQqFgH7VRwng/SISQlHzBxLOw/3JmTc1y3CwXyzkmofhaoAbWgWqCTClUYzOv5vwjCAsH9z4=
+  - secure: vzQdiHHXIDlHvM77+TPna4xlJ7LA6Ss8he/E7YGNA6QPrL1Pr6PEgqqvKeqcpQCbotBJvIZLG1vpv7gRsvCtex9DeP1N03AgkEZFgQGHpQDh42O9jOAI4hyYfJ8VCGjMF4E+7O68BOP0hyGFe3yxozbkNSSgR9+F8nISLXDvdt2W5567z7Bi19wTgVRfI4k3mJJVVNjWzo643nNiE1r1Y1FCd1wfUk6HIzE/omRt3bIJTyojc9V/N6H+2nuwhvcYgePEcEImWcbA6QgQBR2BCCWHl4NvRi87PxqeTa2laKXUi1nefFLxu3KwftpuHqyZ3oJWfrGkVkdDXmm7NjJsnN12mW5y0vo4di7yyFalGtAOu5+gHVbocoTEInbNtSvOXzYHF1/2ZJyhR8cfrSw4mS+aYbbwf7/P1aUaSCQUV3kk35uzAJJOoK1KqjC/CKaW4w7nBg3Y1Dzdel0Mmc4A0UPXMTi6jL6MTJRBzpOB/2AVTNsL5vaqXL0WKg9BRouH+v1qZMR3e6gNxpk5yYSyQ/WxTPaDkBl7uAS/gGy9P84Neels1auDaD74TWgOIS5ttDNoMoNXRcr3mIpWwB1FwCgPhX5pt/gboN+O7A3tBgob+0eZ8ICvl3SwIufP5YKJ+FBiVHkacraE71KqNs1me4uw/eZfsnau6d0MGy5EieY=
+
