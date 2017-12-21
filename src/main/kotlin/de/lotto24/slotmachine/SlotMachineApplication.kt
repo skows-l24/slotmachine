@@ -54,7 +54,7 @@ fun main(args: Array<String>) {
                             GET("/name/{$searchPathName}") { ServerResponse.ok().body(optionRepository.findByName(it.pathVariable(searchPathName))) }
                             POST("/") { ServerResponse.ok().body(optionRepository.insert(it.bodyToMono(Option::class.java))) }
                         }
-                        ("hello").nest {
+                        ("/hello").nest {
                             GET("/") { ServerResponse.ok().body(listOf("Hello World!").toMono()) }
                         }
                     }
