@@ -66,7 +66,7 @@ fun main(args: Array<String>) {
                         route {
                             id("lotto")
                             predicate(RoutePredicates.path("/lotto") or RoutePredicates.path("/lotto24"))
-                            uri("https://lotto24.de")
+                            uri("https://www.lotto24.de")
                         }
                     }
                 }
