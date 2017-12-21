@@ -14,6 +14,7 @@ import org.springframework.web.reactive.function.server.router
 import reactor.core.publisher.Flux
 import reactor.core.publisher.toFlux
 import reactor.core.publisher.toMono
+import java.net.URI
 
 @EnableAutoConfiguration
 @SpringBootApplication
@@ -54,9 +55,9 @@ fun main(args: Array<String>) {
                             GET("/name/{$searchPathName}") { ServerResponse.ok().body(optionRepository.findByName(it.pathVariable(searchPathName))) }
                             POST("/") { ServerResponse.ok().body(optionRepository.insert(it.bodyToMono(Option::class.java))) }
                         }
-                        ("/hello").nest {
-                            GET("/") { ServerResponse.ok().body(listOf("Hello World!").toMono()) }
-                        }
+                        GET("/hello") { ServerResponse.ok().body(listOf("Hello World!").toMono()) }
+                        GET("/goodbye") { ServerResponse.ok().body(listOf("Bye bye World!").toMono()) }
+                        GET("/") { ServerResponse.temporaryRedirect(URI.create("hello")).build().toMono() }
                     }
                 }
             })
