@@ -13,6 +13,7 @@ import org.springframework.web.reactive.function.server.body
 import org.springframework.web.reactive.function.server.router
 import reactor.core.publisher.Flux
 import reactor.core.publisher.toFlux
+import reactor.core.publisher.toMono
 
 @EnableAutoConfiguration
 @SpringBootApplication
@@ -48,18 +49,13 @@ fun main(args: Array<String>) {
                             val searchPathId = "id"
                             val searchPathName = "name"
 
-                            GET("/") {
-                                ServerResponse.ok().body(optionRepository.findAll())
-                            }
-                            GET("/{$searchPathId}") {
-                                ServerResponse.ok().body(optionRepository.findById(it.pathVariable(searchPathId)))
-                            }
-                            GET("/name/{$searchPathName}") {
-                                ServerResponse.ok().body(optionRepository.findByName(it.pathVariable(searchPathName)))
-                            }
-                            POST("/") {
-                                ServerResponse.ok().body(optionRepository.insert(it.bodyToMono(Option::class.java)))
-                            }
+                            GET("/") { ServerResponse.ok().body(optionRepository.findAll()) }
+                            GET("/{$searchPathId}") { ServerResponse.ok().body(optionRepository.findById(it.pathVariable(searchPathId))) }
+                            GET("/name/{$searchPathName}") { ServerResponse.ok().body(optionRepository.findByName(it.pathVariable(searchPathName))) }
+                            POST("/") { ServerResponse.ok().body(optionRepository.insert(it.bodyToMono(Option::class.java))) }
+                        }
+                        ("hello").nest {
+                            GET("/") { ServerResponse.ok().body(listOf("Hello World!").toMono()) }
                         }
                     }
                 }
