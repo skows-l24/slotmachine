@@ -11,7 +11,7 @@ class SlotMachineApplicationTests {
 
 	@Test
 	fun contextLoads() {
-		println("succes")
+		println("succes yeah!")
 	}
 
 }
