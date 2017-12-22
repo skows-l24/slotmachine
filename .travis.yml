@@ -10,3 +10,7 @@ deploy:
   on:
     repo: skows-l24/slotmachine
     branch: reactive
+notifications:
+  hipchat:
+    rooms:
+      secure: nAJbGZ8iLR/vxyZhm8NyMax9xuptYrD5b3nxrev2QZHpgti+AE+k4Cf03BFLYtoDkxwZy55pHhfTyTNPotqAos7YtKKIwglXL99/Nu0YRooClSsk58Q5RbjXirqh19K9CcScQdY+CgdSpSIIpwzY8EuZbe1thhrRWyrzjr87KedqwkYTbDP/FqD1Q5woebeMIhENqnliW5jKc3zAjP5jUxEs1pc+1/fAuprO1hinWxOJRyyeodDk9urFMeNjOZd9nf4KtqZBgPoDFhIh3g3Xs8Qh1U4Z1XxTtFR4UaMVW8iDVPchwWGRs6ZzH6OwZxn3OowrGRZLum5Xo0tSN7OnDa13p+I22VxIQAXxK3h7WsN1NKEXPpN7TShNnus/UBR6o8jpPjtbbRDezq/eFDEaP6G5EwwgoiaHjuptCZobKUZ3rs0hKNlOdkT2gJyh7okqJstghE/v3CjF3N3e70ENB6yTqOxoFs8Fr1MT6BXLPsbJJFKAk9eOHTu+ww+eejcy9fxB+cOfpMo2qjrVX/xeeLNodg+xpjI87eWdwG3rd70/7SPpfJMu99VQGnmM8cxG+TTOF2dDo5Ab452rqyKuETn+nygY6Vbbmne6O0vr9Md+I02O46GW51DTOtUYP2zBLAPwBmiBu8ziQYaWFzNlSsqzcsbBdIRMC7YXcNdCND4=
